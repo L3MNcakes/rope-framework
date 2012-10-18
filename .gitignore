@@ -1,0 +1,23 @@
+######################
+# Copressed/Archives #
+######################
+*.7z
+*.dmg
+*.gz
+*.tar
+*.rar
+*.zip
+*.jar
+
+##############
+# Logs/Cache #
+##############
+*.log
+app/log/*
+
+###########################
+# .htaccess and .htpasswd #
+###########################
+
+*/.htaccess
+*/.htpasswd
