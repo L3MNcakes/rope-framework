@@ -13,7 +13,6 @@
 # Logs/Cache #
 ##############
 *.log
-app/log/*
 
 ###########################
 # .htaccess and .htpasswd #
@@ -21,3 +20,10 @@ app/log/*
 
 */.htaccess
 */.htpasswd
+
+######################
+# Unneccessary Files #
+######################
+*~
+*.bak
+*.old
