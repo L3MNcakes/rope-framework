@@ -12,6 +12,14 @@ if(!defined('ROPE_BASE_PATH')) die('You shall not pass!');
  *
  */
 
+// LOAD ALL USER-DEFINED LIBRARIES
+$dh = opendir(ROPE_APPLICATION_PATH . "/libraries");
+while(($file = readdir($dh)) !== false) {
+    if(!is_dir(ROPE_APPLICATION_PATH . "/libraries/". $file)) {
+        require_once(ROPE_APPLICATION_PATH . "/libraries/" . $file);
+    }
+}
+
 // LOAD COMMON FUNCTIONS
 if(file_exists(ROPE_CORE_PATH . "/Functions.php")) {
     require_once(ROPE_CORE_PATH . "/Functions.php");
@@ -21,7 +29,6 @@ if(file_exists(ROPE_CORE_PATH . "/Functions.php")) {
 if(file_exists(ROPE_CORE_PATH . "/Constants.php")) {
     require_once(ROPE_CORE_PATH . "/Constants.php");
 }
-
 
 // LOAD APPLICATION CLASS
 if(file_exists(ROPE_APPLICATION_PATH . "/override/Application.php")) {
@@ -88,6 +95,7 @@ while(($file = readdir($dh)) !== false) {
     }
 }
 closedir($dh);
+
 
 // Create Application
 $app = new Rope_Application();
