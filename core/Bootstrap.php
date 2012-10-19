@@ -96,6 +96,13 @@ while(($file = readdir($dh)) !== false) {
 }
 closedir($dh);
 
+// LOAD ALL APP-MODEL CLASSES
+$dh = opendir(ROPE_APPLICATION_PATH . "/models");
+while(($file = readdir($dh)) !== false) {
+    if(!is_dir(ROPE_APPLICATION_PATH . "/models/" . $file)) {
+        require_once(ROPE_APPLICATION_PATH . "/models/" . $file);
+    }
+}
 
 // Create Application
 $app = new Rope_Application();
