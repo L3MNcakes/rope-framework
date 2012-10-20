@@ -37,4 +37,8 @@ class Rope_Controller
             $error->display();
         }
     }
+
+    public function param($paramName=null) {
+        return $this->getApplication()->getParameter($paramName);
+    }
 }

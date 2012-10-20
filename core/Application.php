@@ -135,4 +135,16 @@ class Rope_Application
 
         $this->errors[] = $errorObj;
     }
+
+    public function getParameter($paramName=null) {
+        if(!$paramName) {
+            return $this->parameters;
+        }
+
+        if(isset($this->parameters[$paramName])) {
+            return $this->parameters[$paramName];
+        }
+
+        return False;
+    }
 }
