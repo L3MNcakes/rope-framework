@@ -13,6 +13,7 @@ class Rope_Model
     protected $_client;
     protected $_domain;
     protected $_key;
+    protected $_keyAttribute;
     protected $_attributes;
     protected $_links;
 
@@ -27,6 +28,10 @@ class Rope_Model
 
     public function store() {
         if(!isset($this->_attributes) || empty($this->_attributes)) return False;
+
+        if(isset($this->_attributes[$this->_keyAttribute])) {
+            $this->_key = $this->_attributes[$this->_keyAttribute];
+        }
 
         $bucket = $this->_client->bucket($this->_domain);
         $obj = new RiakObject($this->_client, $bucket, $this->_key);
