@@ -17,8 +17,8 @@ class Rope_Model
     protected $_attributes;
     protected $_links;
 
-    public function __construct($key=null) {
-        $this->_client = new RiakClient(Config::get('RiakHost'),Config::get('RiakPort'));
+    public function __construct($key=null,$host='127.0.0.1',$port='8091') {
+        $this->_client = new RiakClient($host,$port);
 
         if($key) {
             $this->_key = $key;

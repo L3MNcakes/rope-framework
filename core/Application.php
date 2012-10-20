@@ -36,7 +36,7 @@ class Rope_Application
 
     protected function _initConfig() {
         add_log("SYSTEM: Intilizing Configuration");
-        
+
         // Initialize Default Configuration
         $this->config["default"] = new DefaultConfig();
         add_log("CONFIG: Loaded Default");
