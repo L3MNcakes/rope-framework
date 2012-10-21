@@ -15,7 +15,7 @@ if(!defined('ROPE_BASE_PATH')) die('You shall not pass!');
 // LOAD ALL USER-DEFINED LIBRARIES
 $dh = opendir(ROPE_APPLICATION_PATH . "/libraries");
 while(($file = readdir($dh)) !== false) {
-    if(!is_dir(ROPE_APPLICATION_PATH . "/libraries/". $file)) {
+    if(!is_dir(ROPE_APPLICATION_PATH . "/libraries/". $file) && preg_match('.php', $file)) {
         require_once(ROPE_APPLICATION_PATH . "/libraries/" . $file);
     }
 }
@@ -81,7 +81,7 @@ if(file_exists(ROPE_APPLICATION_PATH . "/override/Error.php")) {
 // LOAD ALL APP-CONFIG CLASSES
 $dh = opendir(ROPE_CONFIG_PATH);
 while(($file = readdir($dh)) !== false) {
-    if($file != "." && $file != "..") {
+    if(!is_dir(ROPE_CONFIG_PATH . "/" . $file) && preg_match('.php', $file)){
         require_once(ROPE_CONFIG_PATH . "/" . $file);
     }
 }
@@ -90,7 +90,7 @@ closedir($dh);
 // LOAD ALL APP-CONTROLLER CLASSES
 $dh = opendir(ROPE_APPLICATION_PATH . "/controllers");
 while(($file = readdir($dh)) !== false) {
-    if(!is_dir(ROPE_APPLICATION_PATH . "/controllers/" . $file)) {
+    if(!is_dir(ROPE_APPLICATION_PATH . "/controllers/" . $file) && preg_match('.php', $file)) {
         require_once(ROPE_APPLICATION_PATH . "/controllers/" . $file);
     }
 }
@@ -99,7 +99,7 @@ closedir($dh);
 // LOAD ALL APP-MODEL CLASSES
 $dh = opendir(ROPE_APPLICATION_PATH . "/models");
 while(($file = readdir($dh)) !== false) {
-    if(!is_dir(ROPE_APPLICATION_PATH . "/models/" . $file)) {
+    if(!is_dir(ROPE_APPLICATION_PATH . "/models/" . $file) && preg_match('.php', $file)) {
         require_once(ROPE_APPLICATION_PATH . "/models/" . $file);
     }
 }
