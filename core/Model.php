@@ -149,4 +149,14 @@ class Rope_Model
 
         return $linkArr;
     }
+
+    public function removeLink($tagName, $domain, $key) {
+        if(isset($this->_links[$tagName])) {
+            foreach($this->_links[$tagName] as $k=>$link) {
+                if($link['bucket'] == $domain && $link['key'] == $key) {
+                    unset($this->_links[$tagname][$k]);
+                }
+            }
+        }
+    }
 }
