@@ -77,7 +77,7 @@ class Rope_Model
 
         $bucket = $this->_client->bucket($this->_domain);
         $obj = $bucket->get($this->_key);
-        $data = $obj->getData();
+        $data = json_decode($obj->getData());
 
         if(!$data) return False;
 
