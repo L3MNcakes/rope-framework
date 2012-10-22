@@ -16,6 +16,7 @@ class Rope_Model
     protected $_keyAttribute;
     protected $_attributes;
     protected $_links;
+    protected $_removedLinks;
 
     public function __construct($key=null,$host='127.0.0.1',$port='8091') {
         $this->_client = new RiakClient($host,$port);
@@ -46,6 +47,13 @@ class Rope_Model
 
                 $obj->addLink($linkObj, $tag);
             }
+        }
+
+        foreach($this->_removedLinks as $link) {
+            $bucket = $this->_client->bucket($link["bucket"]);
+            $linkObj = $bucket->get($link["key"]);
+
+            $obj->removeLink($linkObj, $link["tag"]);
         }
 
         $obj->store();
@@ -155,6 +163,11 @@ class Rope_Model
             foreach($this->_links[$tagName] as $k=>$link) {
                 if($link['bucket'] == $domain && $link['key'] == $key) {
                     unset($this->_links[$tagname][$k]);
+                    $this->_removedLinks[] = array(
+                        'tag' => $tagName,
+                        'bucket' => $bucket,
+                        'key' => $key,
+                    );
                 }
             }
         }
