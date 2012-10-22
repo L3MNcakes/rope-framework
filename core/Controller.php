@@ -55,4 +55,16 @@ class Rope_Controller
 
         return "";
     }
+
+    public function request($name=null) {
+        if(!$name) {
+            return $_REQUEST;
+        }
+
+        if(isset($_REQUEST[$name])) {
+            return $_REQUEST[$name];
+        }
+
+        return False;
+    }
 }
