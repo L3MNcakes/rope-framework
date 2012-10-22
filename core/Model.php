@@ -40,10 +40,12 @@ class Rope_Model
         $obj->setData($data);
 
         foreach($this->_links as $tag=>$link) {
-            $bucket = $this->_client->bucket($link["bucket"]);
-            $linkObj = $bucket->get($link["key"]); 
+            foreach($link as $l) {
+                $bucket = $this->_client->bucket($l["bucket"]);
+                $linkObj = $bucket->get($l["key"]); 
 
-            $obj->addLink($linkObj, $tag);
+                $obj->addLink($linkObj, $tag);
+            }
         }
 
         $obj->store();
