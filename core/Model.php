@@ -125,7 +125,7 @@ class Rope_Model
 
         $bucket = $linkObj->getDomain();
         $key = $linkObj->getKey();
-        $this->_links[$tagName] = array(
+        $this->_links[$tagName][] = array(
             'bucket' => $bucket,
             'key' => $key,
         );
