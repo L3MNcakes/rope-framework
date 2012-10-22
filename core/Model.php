@@ -166,7 +166,7 @@ class Rope_Model
                     unset($this->_links[$tagname][$k]);
                     $this->_removedLinks[] = array(
                         'tag' => $tagName,
-                        'bucket' => $bucket,
+                        'bucket' => $domain,
                         'key' => $key,
                     );
                 }
