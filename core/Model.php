@@ -49,11 +49,12 @@ class Rope_Model
             }
         }
 
-        foreach($this->_removedLinks as $link) {
+        foreach($this->_removedLinks as $k=>$link) {
             $bucket = $this->_client->bucket($link["bucket"]);
             $linkObj = $bucket->get($link["key"]);
 
             $obj->removeLink($linkObj, $link["tag"]);
+            unset($this->_removedLinks[$k]);
         }
 
         $obj->store();
