@@ -11,6 +11,7 @@ if(!defined('ROPE_BASE_PATH')) die('You shall not pass!');
 class Rope_Controller
 {
     private static $_app;
+    protected $_data;
 
     public function __construct(&$app=null) {
         self::$_app =& $app;
@@ -20,7 +21,7 @@ class Rope_Controller
         return self::$_app;
     }
 
-    public function loadView($viewName=null, $ext='php') {
+    public function loadView($viewName=null, $data=null, $ext='php') {
         if(!isset($viewName) || $viewName == null) {
             $viewName = strtolower(get_class($this));
             $viewName = str_replace('controller','',$viewName);
@@ -31,6 +32,11 @@ class Rope_Controller
 
         $viewFile = ROPE_APPLICATION_PATH . "/views/" . $viewName . "." . $ext;
         if(file_exists($viewFile)) {
+            if($data) {
+                if(!is_array($data)) $data = array();
+                $this->_data = $data;
+            }
+
             include_once($viewFile);
         } else {
             $error = new Rope_Error('View', 'Rope-View ' . $viewFile . ' does not exist.');
@@ -40,5 +46,13 @@ class Rope_Controller
 
     public function param($paramName=null) {
         return $this->getApplication()->getParameter($paramName);
+    }
+
+    public function get($name) {
+        if(isset($this->_data[$name])) {
+            return $this->_data[$name];
+        }
+
+        return "";
     }
 }
