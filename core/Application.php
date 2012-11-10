@@ -90,10 +90,17 @@ class Rope_Application
     public function run() {
         add_log("APPLICATION: Running Application");
 
+        // Define important riak constants from config
+        define("ROPE_RIAK_HOST", $this->getConfig("default")->get('riak_host'));
+        define("RIPE_RIAK_PORT", $this->getConfig("default")->get('riak_port'));
+
+        // Check for errors
         if(count($this->errors) > 0) {
             add_log("APPLICATION: Caught an error... Re-Routing...");
+            // Re-route to default error controller set in config
             $this->controller = $this->getConfig("default")->get('default_error_controller');
             $this->action = $this->getConfig("default")->get('default_action');
+            // Pass errors in as a parameter to error controller
             unset($this->parameters);
             $this->parameters["errors"] = $this->errors;
 
@@ -102,8 +109,10 @@ class Rope_Application
             add_log("ROUTE: Params - Loaded : " . (count($this->parameters)));
         }
 
+        // Load the class from specified controller
         $className = ucfirst($this->controller) . "Controller";
         if(class_exists($className)) {
+            // Load and call specified method from action 
             $instance = new $className($this);
             $method = $this->action;
             if(method_exists($instance, $method)) {
@@ -112,15 +121,18 @@ class Rope_Application
             }
         }
 
+        // Direct to 404 Error if class or method does not exist
         $error = new Rope_Error(ROPE_ERROR_404_CODE, ROPE_ERROR_404_MESSAGE);
         $error->display();
     }
 
     public function getConfig($shortName=null) {
+        // Figure out which config to query
         if(!isset($shortName) || $shortName == '') {
             $shortName = 'default';
         }
 
+        // Return Rope_Config Object
         if(isset($this->config[$shortName])) {
             return $this->config[$shortName];
         } else {

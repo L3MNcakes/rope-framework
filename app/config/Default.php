@@ -11,5 +11,7 @@ class DefaultConfig extends Rope_Config
         "default_action" => "indexAction",
         "default_error_controller" => "Error",
         "default_view_name" => "default",
+        "riak_host" => "127.0.0.1",
+        "riak_port" => "8091",
     );
 }

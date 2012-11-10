@@ -18,7 +18,7 @@ class Rope_Model
     protected $_links;
     protected $_removedLinks;
 
-    public function __construct($key=null,$host='127.0.0.1',$port='8091') {
+    public function __construct($key=null,$host=ROPE_RIAK_HOST,$port=ROPE_RIAK_PORT) {
         $this->_client = new RiakClient($host,$port);
 
         if($key) {
