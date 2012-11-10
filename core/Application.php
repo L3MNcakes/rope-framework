@@ -90,10 +90,6 @@ class Rope_Application
     public function run() {
         add_log("APPLICATION: Running Application");
 
-        // Define important riak constants from config
-        define("ROPE_RIAK_HOST", $this->getConfig("default")->get('riak_host'));
-        define("RIPE_RIAK_PORT", $this->getConfig("default")->get('riak_port'));
-
         // Check for errors
         if(count($this->errors) > 0) {
             add_log("APPLICATION: Caught an error... Re-Routing...");
