@@ -3,7 +3,7 @@ if(!defined('ROPE_BASE_PATH')) die('You shall not pass!');
 /**
  * @package     RopeFramework
  * @filename    Bootstrap.php
- * @author      Brandon Soucie <x3n0ph0be@tormail.org>
+ * @author      Brandon Soucie <L3MNcakes@gmail.com>
  * 
  * ROPE BOOTSTRAPPER FILE
  * This is the Rope-Framework bootstrapper file. It's responsible for

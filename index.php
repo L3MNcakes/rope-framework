@@ -2,7 +2,7 @@
 /**
  * @package     RopeFramework
  * @filename    index.php
- * @author      Brandon Soucie <x3n0ph0be@tormail.org>
+ * @author      Brandon Soucie <L3MNcakes@gmail.com>
  *
  */
 

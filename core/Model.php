@@ -3,7 +3,7 @@ if(!defined('ROPE_BASE_PATH')) die('You shall not pass!');
 /**
  * @package     RopeFramework
  * @filename    Model.php
- * @author      Brandon Soucie <x3n0ph0be@tormail.org>
+ * @author      Brandon Soucie <L3MNcakes@gmail.com>
  *
  * Class definition for Rope-Framework Model.
  *
